@@ -22,4 +22,4 @@ urlpatterns = [
     path(
         'posts/<int:post_id>/<int:comment_id>/edit_comment/',
         views.edit_comment, name='edit_comment')
-            ]
+]
