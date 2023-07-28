@@ -94,9 +94,29 @@ def post_detail(request, post_id):
 
 
 @login_required
+def edit_post(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+    if request.user != post.author:
+        return redirect('blog:post_detail', post_id)
+    form = PostForm(
+        request.POST or None,
+        files=request.FILES or None,
+        instance=post)
+    if form.is_valid():
+        form.save()
+        return redirect('blog:post_detail', post_id)
+    template = 'blog/create.html'
+    context = {'form': form, 'post': post, 'is_edit': True}
+    return render(request, template, context)
+
+
+@login_required
 def delete_post(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
     instance = get_object_or_404(Post, id=post_id)
     form = PostForm(instance=instance)
+    if request.user != post.author:
+        return redirect('blog:post_detail', post_id)
     context = {'form': form}
     if request.method == 'POST':
         instance.delete()
