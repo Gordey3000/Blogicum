@@ -1,35 +1,20 @@
 from __future__ import annotations
 
 import re
-from abc import abstractmethod, ABC
+from abc import ABC, abstractmethod
 from functools import partial
 from http import HTTPStatus
-from typing import (
-    Set,
-    Tuple,
-    Type,
-    Sequence,
-    Callable,
-    Optional,
-    Dict,
-    Iterable,
-    Any,
-    List,
-    Union,
-)
+from typing import (Any, Callable, Dict, Iterable, List, Optional, Sequence,
+                    Set, Tuple, Type, Union)
 
 import bs4
 import django.test
+from conftest import (ItemNotCreatedException, TitledUrlRepr,
+                      restore_cleaned_data)
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.db.models import Model, QuerySet
 from django.forms import BaseForm
 from django.http import HttpResponse
-
-from conftest import (
-    ItemNotCreatedException,
-    restore_cleaned_data,
-    TitledUrlRepr,
-)
 from fixtures.types import ModelAdapterT
 from form.base_tester import BaseTester
 

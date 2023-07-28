@@ -2,17 +2,16 @@ import inspect
 import os
 from http import HTTPStatus
 from pathlib import Path
-from typing import Tuple, Set, Optional
+from typing import Optional, Set, Tuple
 
 import pytest
+from adapters.user import UserModelAdapter
+from conftest import KeyVal, squash_code
 from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.db.models import Model
 from django.http import HttpResponse
 from django.urls import URLPattern, URLResolver, get_resolver
-
-from adapters.user import UserModelAdapter
-from conftest import KeyVal, squash_code
 from form.find_urls import find_links_between_lines
 from form.user.edit_form_tester import EditUserFormTester
 from test_edit import _test_edit

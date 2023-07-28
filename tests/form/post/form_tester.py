@@ -1,12 +1,11 @@
 from io import BytesIO
-from typing import Type, Dict
-
-from PIL import Image
-from django.core.files.uploadedfile import SimpleUploadedFile
-from django.forms import BaseForm
+from typing import Dict, Type
 
 from adapters.post import PostModelAdapter
+from django.core.files.uploadedfile import SimpleUploadedFile
+from django.forms import BaseForm
 from form.base_form_tester import BaseFormTester
+from PIL import Image
 
 
 class PostFormTester(BaseFormTester):

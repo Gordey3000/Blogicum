@@ -1,8 +1,7 @@
-from typing import List, Sequence, Dict, Optional
+from typing import Dict, List, Optional, Sequence
 
 from bs4 import BeautifulSoup
-from bs4.element import Tag, SoupStrainer
-
+from bs4.element import SoupStrainer, Tag
 from conftest import KeyVal
 
 

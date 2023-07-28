@@ -1,12 +1,11 @@
 import re
 from typing import Tuple
 
-from django.http import HttpResponse
-
 from adapters.post import PostModelAdapter
+from conftest import KeyVal
+from django.http import HttpResponse
 from fixtures.types import CommentModelAdapterT
 from form.find_urls import find_links_between_lines, get_url_display_names
-from conftest import KeyVal
 
 
 def find_edit_and_delete_urls(

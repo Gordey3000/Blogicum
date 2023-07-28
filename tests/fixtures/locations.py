@@ -1,7 +1,6 @@
 import pytest
-from mixer.backend.django import Mixer
-
 from conftest import N_PER_FIXTURE
+from mixer.backend.django import Mixer
 
 
 @pytest.fixture

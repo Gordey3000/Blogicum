@@ -1,12 +1,11 @@
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
-from typing import Type, Optional, Union
-
-from django.db.models import Model
-from django.test import Client
+from typing import Optional, Type, Union
 
 from conftest import TitledUrlRepr
+from django.db.models import Model
+from django.test import Client
 from fixtures.types import ModelAdapterT
 
 

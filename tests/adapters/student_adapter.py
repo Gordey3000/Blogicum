@@ -1,10 +1,9 @@
 from abc import abstractmethod
-from typing import Union, Type, Any
-
-from django.db.models import Model, Field
+from typing import Any, Type, Union
 
 from adapters.model_adapter import ModelAdapter
 from conftest import get_field_key
+from django.db.models import Field, Model
 
 
 class StudentModelAdapter(ModelAdapter):

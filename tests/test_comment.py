@@ -1,20 +1,19 @@
 import datetime
 import random
 from http import HTTPStatus
-from typing import Tuple, Any, Type, List, Union
+from typing import Any, List, Tuple, Type, Union
 
 import django.test.client
 import pytest
 import pytz
-from django.db.models import TextField, DateTimeField, ForeignKey, Model
+from adapters.post import PostModelAdapter
+from conftest import KeyVal, _TestModelAttrs, get_a_post_get_response_safely
+from django.db.models import DateTimeField, ForeignKey, Model, TextField
 from django.forms import BaseForm
 from django.utils import timezone
-
-from adapters.post import PostModelAdapter
-from conftest import _TestModelAttrs, KeyVal, get_a_post_get_response_safely
 from fixtures.types import CommentModelAdapterT
-from form.base_form_tester import (
-    FormValidationException, AuthorisedSubmitTester)
+from form.base_form_tester import (AuthorisedSubmitTester,
+                                   FormValidationException)
 from form.comment.create_form_tester import CreateCommentFormTester
 from form.comment.delete_tester import DeleteCommentTester
 from form.comment.edit_form_tester import EditCommentFormTester

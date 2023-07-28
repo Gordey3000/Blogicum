@@ -3,26 +3,23 @@ import random
 import re
 from contextlib import contextmanager
 from http import HTTPStatus
-from typing import Tuple, Type, List
+from typing import List, Tuple, Type
 
 import django.test.client
 import pytest
 import pytz
-from django.db.models import Model, ImageField, DateTimeField
+from adapters.post import PostModelAdapter
+from blog.models import Post
+from conftest import (KeyVal, _TestModelAttrs,
+                      get_create_a_post_get_response_safely,
+                      get_get_response_safely)
+from django.db.models import DateTimeField, ImageField, Model
 from django.forms import BaseForm
 from django.http import HttpResponse
 from django.utils import timezone
-
-from adapters.post import PostModelAdapter
-from blog.models import Post
-from conftest import (
-    _TestModelAttrs,
-    KeyVal,
-    get_create_a_post_get_response_safely, get_get_response_safely,
-)
 from fixtures.types import CommentModelAdapterT, ModelAdapterT
-from form.base_form_tester import (
-    FormValidationException, AuthorisedSubmitTester, SubmitTester)
+from form.base_form_tester import (AuthorisedSubmitTester,
+                                   FormValidationException, SubmitTester)
 from form.post.create_form_tester import CreatePostFormTester
 from form.post.delete_tester import DeletePostTester
 from form.post.edit_form_tester import EditPostFormTester

@@ -34,8 +34,6 @@ ALLOWED_HOSTS = [
 # Application definition
 
 INSTALLED_APPS = [
-    'blog.apps.BlogConfig',
-    'pages.apps.PagesConfig',
     'django_bootstrap5',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -43,7 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'debug_toolbar'
+    'debug_toolbar',
+    'blog.apps.BlogConfig',
+    'pages.apps.PagesConfig'
 ]
 
 STATICFILES_DIRS = [

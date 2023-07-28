@@ -1,18 +1,14 @@
-from typing import Type, Optional, Dict
+from typing import Dict, Optional, Type
 
 import django.test
+from conftest import (KeyVal, _testget_context_item_by_class,
+                      get_get_response_safely)
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.db.models import Model
 from django.forms import BaseForm
 from django.http import HttpResponse
-
 from fixtures.types import ModelAdapterT
 from form.base_form_tester import BaseFormTester
-from conftest import (
-    KeyVal,
-    get_get_response_safely,
-    _testget_context_item_by_class,
-)
 
 
 def _test_edit(
