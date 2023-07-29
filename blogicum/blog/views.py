@@ -1,19 +1,26 @@
 import datetime as dt
 
-from blog.models import Category, Comment, Post
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.db.models import Count
 from django.shortcuts import get_object_or_404, redirect, render
-
 from .forms import CommentForm, PostForm, UserForm
+from blog.models import Category, Comment, Post
 
 User = get_user_model()
+number_of_posts = 10
 
 
-def get_page_context(posts):
-    return Paginator(posts, 10)
+def get_paginator(posts, request):
+    paginator = Paginator(posts, number_of_posts)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return {
+        'paginator': paginator,
+        'page_number': page_number,
+        'page_obj': page_obj,
+    }
 
 
 def queryset_post():
@@ -27,13 +34,10 @@ def index(request):
     posts = queryset_post().order_by('-pub_date').annotate(
         comment_count=Count('comment')
     )
-    paginator = get_page_context(posts)
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
     context = {
-        'page_obj': page_obj,
         'posts': posts
     }
+    context.update(get_paginator(posts, request))
     return render(request, 'blog/index.html', context)
 
 
@@ -44,12 +48,9 @@ def profile(request, username):
     ).order_by('-pub_date').annotate(
         comment_count=Count('comment')
     )
-    paginator = get_page_context(posts)
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
-    context = {'profile': profile,
-               'page_obj': page_obj,
+    context = {'profile': profile
                }
+    context.update(get_paginator(posts, request))
     return render(request, 'blog/profile.html', context)
 
 
@@ -185,11 +186,8 @@ def category_posts(request, category_slug):
         is_published=True, category=category,
         pub_date__lt=dt.datetime.now()
     ).order_by('-pub_date')
-    paginator = get_page_context(posts)
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
     context = {
-        'category': category,
-        'page_obj': page_obj,
+        'category': category
     }
+    context.update(get_paginator(posts, request))
     return render(request, 'blog/category.html', context)
