@@ -9,11 +9,11 @@ from .forms import CommentForm, PostForm, UserForm
 from blog.models import Category, Comment, Post
 
 User = get_user_model()
-number_of_posts = 10
+NUMBER_OF_POSTS = 10
 
 
 def get_paginator(posts, request):
-    paginator = Paginator(posts, number_of_posts)
+    paginator = Paginator(posts, NUMBER_OF_POSTS)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     return {
